@@ -1,3 +1,6 @@
+sudo arp-scan -l   // check all devices on network
+nmap -sn defaultip/24   /// check all devices on network
+
 sudo nmap -O 10.0.2.4   /// check OS
 
 sudo nmap -sS 10.0.2.4   // check all ports or -sV
